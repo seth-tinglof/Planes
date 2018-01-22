@@ -187,6 +187,7 @@ class Window:
         self.root.title("Planes!")
         self.frame = Frame(self.root, width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
         self.frame.pack()
+        self.root.resizable(False, False)
         self.canvas = Canvas(self.frame, width=SCREEN_WIDTH, height=SCREEN_HEIGHT, bg="#%02x%02x%02x" % (0, 135, 211))
         self.start_canvas = Canvas(self.frame, width=SCREEN_WIDTH, height=SCREEN_HEIGHT - 100)
         self.score_canvas = Canvas(self.frame, width=SCREEN_WIDTH, height=SCREEN_HEIGHT - SCREEN_HEIGHT // 8)
@@ -198,7 +199,7 @@ class Window:
         Displays the instructions to play the game.
         :return: None
         """
-        self.start_canvas.pack(side='top')
+        self.start_canvas.pack()
         self.start_canvas.create_image(0, 0, image=get_title_image(), anchor=NW)
         self.start_canvas.update()
         button = Button(self.frame, text='continue')
@@ -211,8 +212,8 @@ class Window:
             button.pack_forget()
             self.start_game()
 
-        button.configure(command=button_hit, height=50)
-        button.pack(side='bottom')
+        button.configure(command=button_hit)
+        button.pack()
 
     def start_game(self):
         """
@@ -277,7 +278,6 @@ class Window:
         #######################
         self.score = self.game.enemies_killed
         self.canvas.pack_forget()
-        del self.game
         self.score_screen()
 
     def setup_keybindings(self):
