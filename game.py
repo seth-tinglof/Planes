@@ -57,7 +57,7 @@ class Game:
         self.shoot = False
 
         self.last_player_shot_time = -DELAY_BETWEEN_PLAYER_SHOTS
-        self.last_enemy_spawn_time = 0
+        self.last_enemy_spawn_time = self.current_time
 
     def game_loop(self, current_time):
         """
